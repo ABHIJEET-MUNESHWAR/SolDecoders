@@ -1,0 +1,80 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/soldecoders-types",
+    "crates/soldecoders-core",
+    "crates/soldecoders-api",
+    "crates/soldecoders-node",
+]
+exclude = ["target"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "Apache-2.0"
+authors = ["Abhijeet Ashok Muneshwar <openingknots@gmail.com>"]
+repository = "https://github.com/ABHIJEET-MUNESHWAR/SolDecoders"
+description = "A reusable, trait-based Solana program-instruction decoder library: decodes SPL Token, System, and major DeFi (Raydium, Orca) instructions and logs into typed, analytics-ready events over a pluggable registry, served via a GraphQL API."
+
+[workspace.dependencies]
+# --- async runtime ---
+tokio = { version = "1.38", features = ["full"] }
+tokio-util = { version = "0.7", features = ["rt"] }
+futures = "0.3"
+async-trait = "0.1"
+
+# --- serialization ---
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+bs58 = "0.5"
+base64 = "0.22"
+
+# --- errors ---
+thiserror = "1"
+anyhow = "1"
+
+# --- GraphQL + web ---
+axum = { version = "0.8", features = ["macros"] }
+async-graphql = { version = "7" }
+async-graphql-axum = "7"
+tower = { version = "0.5", features = ["util", "timeout", "limit"] }
+tower-http = { version = "0.6", features = ["trace", "cors", "timeout"] }
+
+# --- observability ---
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json", "fmt"] }
+metrics = "0.22"
+metrics-exporter-prometheus = "0.14"
+
+# --- config ---
+dotenvy = "0.15"
+clap = { version = "4.5", features = ["derive", "env"] }
+
+# --- concurrency / parallelism ---
+rayon = "1.10"
+parking_lot = "0.12"
+
+# --- crypto (discriminator derivation) ---
+sha2 = "0.10"
+
+# --- testing / bench ---
+criterion = { version = "0.5" }
+proptest = "1.5"
+mockall = "0.12"
+
+# --- internal crates ---
+soldecoders-types = { path = "crates/soldecoders-types" }
+soldecoders-core = { path = "crates/soldecoders-core" }
+soldecoders-api = { path = "crates/soldecoders-api" }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+panic = "abort"
+strip = "symbols"
+
+[profile.bench]
+debug = true
+strip = false

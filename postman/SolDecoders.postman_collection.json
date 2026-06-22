@@ -1,0 +1,62 @@
+{
+  "info": {
+    "name": "SolDecoders",
+    "description": "GraphQL API for the SolDecoders Solana instruction decoder library.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" }
+  ],
+  "item": [
+    {
+      "name": "Health (live)",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/health/live", "host": ["{{baseUrl}}"], "path": ["health", "live"] }
+      }
+    },
+    {
+      "name": "Metrics",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/metrics", "host": ["{{baseUrl}}"], "path": ["metrics"] }
+      }
+    },
+    {
+      "name": "GraphQL: supportedPrograms",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/graphql", "host": ["{{baseUrl}}"], "path": ["graphql"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\":\"{ apiVersion supportedPrograms { programId name } }\"}"
+        }
+      }
+    },
+    {
+      "name": "GraphQL: decodeInstruction (system transfer)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/graphql", "host": ["{{baseUrl}}"], "path": ["graphql"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\":\"query Decode($i: InstructionInput!){ decodeInstruction(input:$i){ success errorCode event { eventType programKind from to lamports } } }\",\"variables\":{\"i\":{\"programId\":\"11111111111111111111111111111111\",\"accounts\":[\"11111111111111111111111111111112\",\"11111111111111111111111111111113\"],\"dataBase64\":\"AgAAAADKmjsAAAAA\"}}}"
+        }
+      }
+    },
+    {
+      "name": "GraphQL: decodeTransaction",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/graphql", "host": ["{{baseUrl}}"], "path": ["graphql"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\":\"query Tx($t: TransactionInput!){ decodeTransaction(input:$t){ success event { eventType } } }\",\"variables\":{\"t\":{\"signatures\":[],\"instructions\":[{\"programId\":\"11111111111111111111111111111111\",\"accounts\":[\"11111111111111111111111111111112\",\"11111111111111111111111111111113\"],\"dataBase64\":\"AgAAAADKmjsAAAAA\"}]}}}"
+        }
+      }
+    }
+  ]
+}

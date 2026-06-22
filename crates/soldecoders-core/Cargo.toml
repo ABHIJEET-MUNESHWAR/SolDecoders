@@ -1,0 +1,22 @@
+[package]
+name = "soldecoders-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "The SolDecoders decoding engine: a pluggable, generic decoder registry plus built-in SPL Token, System, Raydium and Orca instruction decoders."
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[dependencies]
+soldecoders-types = { workspace = true }
+thiserror = { workspace = true }
+rayon = { workspace = true }
+sha2 = { workspace = true }
+
+[dev-dependencies]
+serde_json = { workspace = true }
+proptest = { workspace = true }

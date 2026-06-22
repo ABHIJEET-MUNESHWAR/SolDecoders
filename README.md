@@ -4,7 +4,12 @@
 > on-chain instructions (SPL Token, System, Raydium AMM v4, Orca Whirlpool) into typed,
 > analytics-ready events through a pluggable registry, and serves them over a GraphQL API and CLI.
 
-[![CI](https://github.com/ABHIJEET-MUNESHWAR/SolDecoders/actions/workflows/ci.yml/badge.svg)](https://github.com/ABHIJEET-MUNESHWAR/SolDecoders/actions)
+[![CI](https://github.com/ABHIJEET-MUNESHWAR/SolDecoders/actions/workflows/ci.yml/badge.svg)](https://github.com/ABHIJEET-MUNESHWAR/SolDecoders/actions/workflows/ci.yml)
+[![Stars](https://img.shields.io/github/stars/ABHIJEET-MUNESHWAR/SolDecoders?style=flat)](https://github.com/ABHIJEET-MUNESHWAR/SolDecoders/stargazers)
+[![Issues](https://img.shields.io/github/issues/ABHIJEET-MUNESHWAR/SolDecoders)](https://github.com/ABHIJEET-MUNESHWAR/SolDecoders/issues)
+[![Last commit](https://img.shields.io/github/last-commit/ABHIJEET-MUNESHWAR/SolDecoders)](https://github.com/ABHIJEET-MUNESHWAR/SolDecoders/commits)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Rust](https://img.shields.io/badge/rust-1.89%2B-orange.svg)](https://www.rust-lang.org)
 
 ---
 
